@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.joel.recyclerviewexample.R;
+import com.example.joel.recyclerviewexample.RecyclerItemClickListener;
 import com.example.joel.recyclerviewexample.adapter.AdapterImdb;
 import com.example.joel.recyclerviewexample.model.FilmeIMDB;
 
@@ -37,6 +41,40 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true); // Tamanho fixo
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL)); // Linha de separação
         recyclerView.setAdapter(adapter);
+
+        // Evento do click
+        recyclerView.addOnItemTouchListener(
+            new RecyclerItemClickListener(
+                    getApplicationContext(),
+                    recyclerView,
+                    new RecyclerItemClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+
+                            FilmeIMDB filme = filmesIMDB.get(position);
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Filme clicado: " + filme.getTitulo(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onLongItemClick(View view, int position) {
+
+                            FilmeIMDB filme = filmesIMDB.get(position);
+
+                            Toast.makeText(getApplicationContext(),
+                                    "Filme pressionado: " + filme.getTitulo(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        }
+                    }
+            )
+        );
     }
 
     public void criandoFilmes() {
