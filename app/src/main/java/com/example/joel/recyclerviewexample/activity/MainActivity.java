@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.joel.recyclerviewexample.R;
+import com.example.joel.recyclerviewexample.adapter.AdapterImdb;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
         this.recyclerView = findViewById(R.id.recyclerView);
 
         // Configurando o adapter
-
+        AdapterImdb adapter = new AdapterImdb();
 
         // Configurando RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); // Layout Manager
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true); // Tamanho fixo
-        //recyclerView.setAdapter();
+        recyclerView.setAdapter(adapter);
 
     }
 }
