@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurando RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); // Layout Manager
+        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false); // Layout Manager ( Essa linha vai deixar o RecyclerView na horizontal )
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true); // Tamanho fixo
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL)); // Linha de separação
