@@ -1,9 +1,11 @@
-package com.example.joel.recyclerviewexample;
+package com.example.joel.recyclerviewexample.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.joel.recyclerviewexample.R;
 
 public class MainActivity extends AppCompatActivity {
 
