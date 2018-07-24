@@ -1,6 +1,9 @@
 package com.example.joel.recyclerviewexample.adapter;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +11,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.joel.recyclerviewexample.R;
+import com.example.joel.recyclerviewexample.model.FilmeIMDB;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 public class AdapterImdb extends RecyclerView.Adapter<AdapterImdb.MyViewHolder> {
+
+    private List<FilmeIMDB> listaFilmesIMDB;
+
+    public AdapterImdb(List<FilmeIMDB> filmes) {
+        this.listaFilmesIMDB = filmes;
+    }
 
     @NonNull
     @Override
@@ -20,17 +33,23 @@ public class AdapterImdb extends RecyclerView.Adapter<AdapterImdb.MyViewHolder> 
         return new MyViewHolder(viewImdb);
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.titulo.setText("Pato");
-        holder.genero.setText("Patodrama");
-        holder.ano.setText("2000");
-        holder.pontuacao.setText("9,7");
+
+        FilmeIMDB filme = listaFilmesIMDB.get(position);
+
+        holder.titulo.setText(filme.getTitulo());
+        holder.genero.setText(filme.getGenero());
+        holder.ano.setText(filme.getAno());
+        holder.pontuacao.setText(filme.getPontuacao());
+
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return listaFilmesIMDB.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
